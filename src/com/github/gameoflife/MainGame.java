@@ -11,20 +11,36 @@ import org.newdawn.slick.SlickException;
 
 public class MainGame extends BasicGame{
 	
+	public static final int TAILLE_CELLULE = 10;
+	
 	public MainGame() {
 		super("Game of Life");
 	}
 
+	/**
+	 * Initialisation of the game
+	 */
 	@Override
 	public void init(GameContainer gc) throws SlickException {}
 
+	/**
+	 * Input reading
+	 */
 	@Override
-	public void update(GameContainer gc, int i) throws SlickException {}
+	public void update(GameContainer gc, int i) throws SlickException {
+	}
 
+	/**
+	 * Drawing function
+	 */
 	@Override
-	public void render(GameContainer gc, Graphics g) throws SlickException
-	{
-		g.drawString("Howdy!", 10, 30);
+	public void render(GameContainer gc, Graphics g) throws SlickException {	
+		/** Drawing a cursor under the mouse */
+		int mouseX = gc.getInput().getMouseX();
+		int mouseY = gc.getInput().getMouseY();		
+		int gridX = (int) (Math.floor( mouseX/TAILLE_CELLULE )*TAILLE_CELLULE);
+		int gridY = (int) (Math.floor( mouseY/TAILLE_CELLULE )*TAILLE_CELLULE);
+		g.drawRect(gridX, gridY, TAILLE_CELLULE, TAILLE_CELLULE);
 	}
 
 	public static void main(String[] args)
