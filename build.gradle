@@ -1,0 +1,40 @@
+plugins {
+	id 'com.stehno.natives' version '0.2.3'
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'com.stehno.natives'
+
+mainClassName = 'com.github.gameoflife.MainGame'
+
+repositories {
+    jcenter()
+}
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+dependencies {
+    compile 'org.slick2d:slick2d-core:1.0.1'
+}
+
+jar {
+    baseName = 'GameOfLife'
+    version =  '1.0.0'
+}
+
+test {
+    systemProperty 'java.library.path', file('build/natives/windows')
+}
+
+run {
+    systemProperty 'java.library.path', file('build/natives/windows')
+}
+
+natives {
+    jars = [ 'lwjgl-platform-2.9.1-natives-windows' ]
+    platforms = 'windows'
+}
